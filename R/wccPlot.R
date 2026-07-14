@@ -37,8 +37,16 @@
 library(pheatmap)
 library(gtable)
 
-wccPlot <- function(inSeries1=NA, inSeries2=NA, startwindow=1, endwindow=200, wMax=50, tMax=50, wInc=1, tInc=1, Lsize=8, pspan=.25, type="Max", samplespersecond=1, windcross=TRUE) {
+wccPlot <- function(inSeries1=NA, inSeries2=NA, startwindow=1, endwindow=200, wMax=50, tMax=50, wInc=1, tInc=1, Lsize=8, pspan=.25, type="Max", samplespersecond=1, method=c("c", "cumr", "cumc", "r"), ...) {
 
+    # Deprecation: allow old windcross argument
+    dots <- list(...)
+    if ("windcross" %in% names(dots)) {
+        warning("Argument 'windcross' is deprecated; use method=\"c\" or method=\"r\" instead.")
+        method <- if (isTRUE(dots$windcross)) "c" else "r"
+    } else {
+        method <- match.arg(method)
+    }
 
     if (!is.numeric(inSeries1) | !is.numeric(inSeries2) | !is.vector(inSeries1) | !is.vector(inSeries2) | length(inSeries1) != length(inSeries2)) {
         stop(paste0("Warning: inSeries1 and inSeries2 must be numeric vectors of equal length."))
@@ -54,7 +62,7 @@ wccPlot <- function(inSeries1=NA, inSeries2=NA, startwindow=1, endwindow=200, wM
     # ----------------------------------
     # calculate the windowed cross correlation of inSeries1 and inSeries2.
 
-    wccMatrix <- wccCalc(inSeries1, inSeries2, wMax=wMax, tMax=tMax, wInc=wInc, tInc=tInc, windcross=windcross)
+    wccMatrix <- wccCalc(inSeries1, inSeries2, wMax=wMax, tMax=tMax, wInc=wInc, tInc=tInc, method=method)
     wccZeroRow <- floor((dim(wccMatrix)[2] + 1) / 2)
     wccColumns <- dim(wccMatrix)[1]
     wccRows <- dim(wccMatrix)[2]

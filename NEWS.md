@@ -1,3 +1,60 @@
+# ------- Version 0.4.0 -------
+
+2026-04-15  Steven Boker  <smb3u@virginia.edu>
+
+    Bug fixes:
+    1. Compiled and R versions of wccCalc now agree on last elapsed time calculation when wInc != 1
+    
+    Manual edits and additions:
+    1. wccCalcBatch
+    1. wccVectorFieldCalc (beta release)
+    1. wccVectorFieldPlot (beta release)
+    
+    Additions:
+     from Aaron Peikert
+    1. Variety of speed-ups 
+    2. Addition of two new methods for calculating a WCC grid: cumulative sum in R and in C.  
+       Note that both of these methods are faster than previous versions, but fail when there are any
+       missing values in either time series.
+    3. Reuse of cumulative wcc calc results for pairings of surrogate series.
+     from Steve Boker
+    1. wccVectorFieldCalc()  This function calculates the direction of an isobar on a wcc grid.
+       It is a beta function that is intended to help identify the elapsed time of the start and 
+       end of intervals of synchronization.
+    2. wccVectorFieldPlot()  This plots the results of wccVectorFieldCalc() as a slope field.
+    
+# ------- Version 0.3.2 -------
+
+2026-04-15  Steven Boker  <smb3u@virginia.edu>
+
+    Bug fixes:
+    1. The compiled version of windcross returned NA for any window with any missing values in either time series.  
+        It now calculates correlation on pairwise complete observations.
+        
+    2. Manual edits and additions
+        a. Added defaults into argument descriptions.
+        b. Note that timeseries 1 and 2 can be swapped.
+        c. wcc-package referenced wcc instead of wccCalc.
+        d. Improved lspan description in wccPeakPick
+        e. noted "Max" and "Min" for maxMean and maxVar in wccAggregate.
+        f. Better definition of what is considered to be a missing window.
+        g. Better definition of the returned dataframe from wccFindDyadParam.
+        h. better documentation for the arguments to wccHeatMap.
+        i. Better recommendations for the use of wccPlot.
+        
+    Additions:
+    1. wccVectorField
+        a. Add the wccVectorField function.
+        b. Calculate the forward time derivative for each point in a wcc matrix.
+    2. wccPlotVectorField
+        a. Add the wccPlotVectorField function
+        b. Plot a heatmap of the vector field.
+        c. Plot a traditional vector field
+
+    4. Add single parameter distribution testing.
+    
+    5. Vignettes
+    
 # ------- Version 0.3.1 ------- 
 
 2026-04-09  Steven Boker    <smb3u@virginia.edu>

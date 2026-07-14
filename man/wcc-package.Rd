@@ -38,10 +38,10 @@ Moulder, R., Boker, S., Ramseyer, F., & Tschacher, W. (2018). Determining synchr
 \seealso{
 See \link{wccCalc} for the core function that calculates a windowed cross correlation matrix.\cr
 See \link{wccPeakPick} for the core function that estimates time lag of maximum association from a windowed cross correlation matrix.\cr
-See \link{wccAggregate} to call \code{wcc} and \code{wccPeakPick} and then calculate aggregate statistics from a windowed cross correlation matrix.  \cr
+See \link{wccAggregate} to call \code{wccCalc} and \code{wccPeakPick} and then calculate aggregate statistics from a windowed cross correlation matrix.  \cr
 See \link{wccPlot} to plot a section of a windowed cross correlation matrix and peak picking line from a file created by \link{wccAggregate}.\cr
 See \link{wccSurrogateDyads} to generate a distribution of the aggregate statistics conforming to the null hypothesis that the pairing of the dyad does not matter.\cr
-See \link{wccFindDyadParam} to explore a range of parameter values for \code{wcc} that are compared between surrogate and real dyads.\cr
+See \link{wccFindDyadParam} to explore a range of parameter values for \code{wccCalc} that are compared between surrogate and real dyads.\cr
 See \link{wccHeatmap} to visualize results of selected aggregated statistics for combinations of parameters calculated by \link{wccFindDyadParam}.\cr
 }
 \examples{
@@ -64,7 +64,7 @@ for(i in 1:10) {
 wMaxVec <- c(50,100)
 tMaxVec <- c(25,50)
 wccFDPout <- wccFindDyadParam(inArray1=array1, inArray2=array2, wMaxvector=wMaxVec,
-    tMaxvector=tMaxVec, nSurrogates=30, samplespersecond=1, windcross=FALSE)
+    tMaxvector=tMaxVec, nSurrogates=30, samplespersecond=1, method="r")
 # Plot a heatmap
 wccHeatmap(xparam=wccFDPout$wMax, yparam=wccFDPout$tMax, aggstat=wccFDPout$maxMean,
     xlabel="Window Max", ylabel="Max Lag")
