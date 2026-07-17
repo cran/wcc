@@ -1,4 +1,4 @@
-29b5ff66585b2476e143a8e7ad9a270d *DESCRIPTION
+553623272342643c78c208c25163f3e2 *DESCRIPTION
 442c24b88cd09432539f79c5f3652cd5 *NAMESPACE
 1980f2922872aba7e2cd5f38e2b960ee *NEWS.md
 8acc991ffe1183bfd320b076631d2565 *R/GLLAfunctions.R
@@ -32,6 +32,6 @@ efcbc4597be3d1b8e6505afdc60f3eef *src/corr.c
 4191895e6f4cfadd2fefcfe77ecc6f60 *src/init.c
 c77e77946be67182eec564f345b04d07 *src/windcross.c
 37021398697e05cc215ef3b2e53861f7 *src/windcross.h
-6b6d5570bcb2528af8ba04dae6d46950 *src/windcrosscum.c
+32b48f381825c475528dfc9c0b20588b *src/windcrosscum.c
 ae5e489ae28ede251c6756b3ec6c4a85 *tests/testWccCalcMethods.R
 15142aeb7087e7e35cf8815fac3c347c *tests/testWccPeakPick.R

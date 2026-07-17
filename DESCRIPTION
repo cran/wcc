@@ -1,6 +1,6 @@
 Encoding: UTF-8
 Package: wcc
-Date: 2026-06-13
+Date: 2026-07-17
 Title: Windowed Cross Correlation
 Authors@R: c(person(c("Steven"), "Boker", email="smb3u@virginia.edu", role=c("aut","cre")),
     person("Minquan", "Xu", role="aut"),
@@ -35,8 +35,8 @@ Collate: 'GLLAfunctions.R' 'wccCalc.R' 'wccCalcBatch.R'
         'wccAggregate.R' 'wccFindDyadParam.R' 'wccHeatMap.R'
         'wccPeakPick.R' 'wccPlot.R' 'wccSurrogateDyads.R'
 Biarch: true
-Version: 0.4.0
+Version: 0.4.1
 NeedsCompilation: yes
-Packaged: 2026-07-13 13:18:02 UTC; sboker
+Packaged: 2026-07-17 15:02:49 UTC; sboker
 Repository: CRAN
-Date/Publication: 2026-07-14 13:20:02 UTC
+Date/Publication: 2026-07-17 23:00:02 UTC
