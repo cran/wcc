@@ -67,6 +67,23 @@ wccPlot <- function(inSeries1=NA, inSeries2=NA, startwindow=1, endwindow=200, wM
     wccColumns <- dim(wccMatrix)[1]
     wccRows <- dim(wccMatrix)[2]
 
+    # ----------------------------------
+    # Check whether startwindow and endwindow are possible given wccColumns.
+
+    if (startwindow < 1 ) {
+        stop(paste0("Warning: startwindow must be greater than or equal to 1"))
+    }
+    if (startwindow < 1 | startwindow > wccColumns ) {
+        stop(paste0("Warning: startwindow must be less than the total number of WCC windows, ", wccColumns))
+    }
+
+    if (endwindow < startwindow ) {
+        stop(paste0("Warning: endwindow must be greater than startwindow"))
+    }
+    if (startwindow < 1 | startwindow > wccColumns ) {
+        stop(paste0("Warning: endwindow must be less than or equal to the total number of WCC windows, ", wccColumns))
+    }
+
     ppOut <- wccPeakPick(wccMatrix, Lsize=Lsize, pspan=pspan, type=type)
     ppOut$maxIndex <- ppOut$maxIndex*.5
 
@@ -74,7 +91,7 @@ wccPlot <- function(inSeries1=NA, inSeries2=NA, startwindow=1, endwindow=200, wM
     # Extract the matrix of correlations into the format desired by image().
 
     plotColumns <- (endwindow - startwindow) + 1
-    theX <- wMax + tMax + (seq(startwindow, endwindow, by=1) * wInc / samplespersecond)
+    theX <- (wMax + tMax + seq(startwindow, endwindow, by=1)) * wInc / samplespersecond
     theY <- seq(-floor(wccRows/2),floor(wccRows/2), by=1) * tInc / samplespersecond
     theWCC <- matrix(NA, length(theY), length(theX))
     i <- 1
@@ -99,10 +116,10 @@ wccPlot <- function(inSeries1=NA, inSeries2=NA, startwindow=1, endwindow=200, wM
          ylab="Lag Offset (seconds)",
          cex.lab=1.75, cex.axis=1.5, cex.main=1.75, 
          cex=1.75, mgp=c(2.5,.75,0),zlim=c(-1,1))
-    lines(wMax + tMax + c(startwindow:endwindow) * wInc / samplespersecond, 
+    lines((wMax + tMax + c(startwindow:endwindow) * wInc) / samplespersecond, 
           -ppOut$maxIndex[startwindow:endwindow] * tInc / samplespersecond, 
           type='l', lwd=2)
-    lines(wMax + tMax + c(startwindow * wInc / samplespersecond, endwindow * wInc / samplespersecond), c(0,0), type='l', lty=2, lwd=2)
+    lines(c((wMax + tMax + startwindow * wInc) / samplespersecond, (wMax + tMax + endwindow * wInc) / samplespersecond), c(0,0), type='l', lty=2, lwd=2)
 
     par(mar = c(5, 1, 2, 3))  # adjust margins
     image(x = 1,
